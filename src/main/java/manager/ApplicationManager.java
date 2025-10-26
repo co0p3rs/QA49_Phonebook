@@ -9,24 +9,24 @@ import java.time.Duration;
 
 public class ApplicationManager {
 
-    private  WebDriver driver;
+    private WebDriver driver;
 
     public WebDriver getDriver() {
         return driver;
     }
 
     @BeforeMethod
-    public void setup(){
+    public void setup() {
         driver = new ChromeDriver();
         driver.manage().window().maximize();
         driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(10));
-
-
+        //driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
     }
 
     @AfterMethod(enabled = false)
-    public void tearDown(){
-        if(driver != null)
+    public void tearDown() {
+        if (driver != null)
             driver.quit();
     }
+
 }
