@@ -5,6 +5,7 @@ import manager.ApplicationManager;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
 import pages.*;
 import utils.ContactFactory;
 import utils.HeaderMenuItem;
@@ -13,6 +14,8 @@ import static pages.BasePage.*;
 import static utils.PropertiesReader.*;
 
 public class AddNewContactTests extends ApplicationManager {
+
+    SoftAssert softAssert = new SoftAssert();
 
     HomePage homePage;
     LoginPage loginPage;
@@ -44,8 +47,28 @@ public class AddNewContactTests extends ApplicationManager {
         Contact contact = ContactFactory.positiveContact();
         addPage.typeContactForm(contact);
         //contactsPage.clickLastContact();
-        Assert.assertTrue(contactsPage.isContactPresent(contact));
+        Assert.assertTrue(contactsPage.isContactPresent(contact),"message");
     }
+
+    @Test
+    public void addNewContactPositiveTest_validateElementSCROLL(){
+        Contact contact = ContactFactory.positiveContact();
+        addPage.typeContactForm(contact);
+        contactsPage.scrollToLastElementList();
+        contactsPage.clickLastContact();
+        //contactsPage.scrollToLastElementListJS();
+        String text = contactsPage.getContactCardTest();
+        softAssert.assertTrue(text.contains(contact.getName()));
+        softAssert.assertTrue(text.contains(contact.getLastName()));
+        softAssert.assertTrue(text.contains("zzzzzzzzzzzzzzzzzzzzzzzzzzzz"),
+                "message contains Phone");
+        System.out.println("+++++++++++++++++++++++++++++++++++++++++++");
+        softAssert.assertTrue(text.contains(contact.getEmail()));
+        softAssert.assertTrue(text.contains(contact.getAddress()));
+        softAssert.assertAll();
+    }
+
+
 
 
 }
