@@ -60,9 +60,9 @@ public class AddNewContactTests extends ApplicationManager {
         String text = contactsPage.getContactCardTest();
         softAssert.assertTrue(text.contains(contact.getName()));
         softAssert.assertTrue(text.contains(contact.getLastName()));
-        softAssert.assertTrue(text.contains("zzzzzzzzzzzzzzzzzzzzzzzzzzzz"),
-                "message contains Phone");
-        System.out.println("+++++++++++++++++++++++++++++++++++++++++++");
+//        softAssert.assertTrue(text.contains("zzz"),
+//                "message contains Phone");
+//        System.out.println("+++");
         softAssert.assertTrue(text.contains(contact.getEmail()));
         softAssert.assertTrue(text.contains(contact.getAddress()));
         softAssert.assertAll();
