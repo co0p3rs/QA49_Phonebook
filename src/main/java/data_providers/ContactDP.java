@@ -19,7 +19,8 @@ public class ContactDP {
         List<Contact> list = new ArrayList<>();
         String fileName = PropertiesReader.getProperty("base.properties", "file_contact_csv");
         try (BufferedReader bufferedReader = new BufferedReader(
-                new FileReader("src/test/resources/data_csw"+ File.separator+fileName)
+                new FileReader("src/test/resources/data_csv"+ File.separator+fileName)   //+ File.separator+fileName
+                //new FileReader("src/test/resources/data_csv/data_contacts.csv")
         )) {
             String line = bufferedReader.readLine();
             while (line != null) {
