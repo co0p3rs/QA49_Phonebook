@@ -27,7 +27,7 @@ public class AddNewContactTests extends ApplicationManager {
     AddPage addPage;
     int numberOfContacts;
 
-    @BeforeMethod
+    @BeforeMethod(alwaysRun = true)
     public void login(){
         homePage = new HomePage(getDriver());
         loginPage = clickButtonHeader(HeaderMenuItem.LOGIN);
@@ -39,7 +39,7 @@ public class AddNewContactTests extends ApplicationManager {
         addPage = clickButtonHeader(HeaderMenuItem.ADD);
     }
 
-    @Test
+    @Test(groups = {"smoke", "contact"})
     public void addNewContactPositiveTest(){
         addPage.typeContactForm(ContactFactory.positiveContact());
         int numberOfContactsAfterAdd = contactsPage.getNumberOfContacts();
@@ -61,7 +61,7 @@ public class AddNewContactTests extends ApplicationManager {
         Assert.assertTrue(contactsPage.isContactPresent(contact),"message");
     }
 
-    @Test
+    @Test(groups = "negative")
     public void addNewContactPositiveTest_validateElementSCROLL(){
         Contact contact = ContactFactory.positiveContact();
         addPage.typeContactForm(contact);
