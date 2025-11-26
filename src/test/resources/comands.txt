@@ -1,4 +1,4 @@
-cd C:\Users\dmytro_particleforme\QA49_Phonebook
+cd C:\QA_Auto_Projects\QA_49\QA_49_PhoneBook
 .\gradlew clean smoke_tests     run group smoke test
 .\gradlew clean smoke_contact_tests     run group smoke WO user group
 .\gradlew clean -Dsuite=negative_tests different_tests
